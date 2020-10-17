@@ -1,6 +1,6 @@
 {
   "name": "trick-or-treat-it-forward",
-  "description": "Print a QR Code so trick or treaters can click a button to pledge a donation to the charity of your choice",
+  "description": "Print a QR Code to put on a sign in front of your house so trick or treaters can click a button to pledge a donation to the charity of your choice",
   "version": "0.1.0",
   "scripts": {
     "dev": "NODE_ENV=development next dev",
