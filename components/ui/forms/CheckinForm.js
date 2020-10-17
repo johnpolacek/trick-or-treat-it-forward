@@ -28,7 +28,7 @@ const CheckinForm = ({ onCheckin }) => {
           <Card sx={{ maxWidth: "640px", mx: "auto" }}>
             <Text
               sx={{
-                fontSize: 3,
+                fontSize: [2, 3],
                 fontWeight: "bold",
                 color: "secondary",
                 pb: 3,
@@ -36,15 +36,20 @@ const CheckinForm = ({ onCheckin }) => {
             >
               Thanks {who}!
             </Text>
-            <Text>
+            <Text sx={{ fontSize: [0, 1] }}>
               If you’d like to make your own donation to Lakeview Pantry, head
               on over to{" "}
             </Text>
             <Link
               href="https://www.lakeviewpantry.org/donate/"
-              sx={{ display: "block", pt: 2, fontSize: 2, color: "secondary" }}
+              sx={{
+                display: "block",
+                pt: 2,
+                fontSize: [1, 2],
+                color: "secondary",
+              }}
             >
-              chicagosfoodbank.org
+              lakeviewpantry.org
             </Link>
           </Card>
         </Flex>
