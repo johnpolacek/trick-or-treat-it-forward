@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Form from "./Form"
 import { Flex, Card, Text, Label, Input, Link } from "theme-ui"
 
-const CheckinForm = (props) => {
+const CheckinForm = ({ onCheckin }) => {
   const [who, setWho] = useState("")
   const [checkedIn, setCheckedIn] = useState(false)
 
@@ -17,6 +17,7 @@ const CheckinForm = (props) => {
       .then((response) => response.json())
       .then((result) => {
         setCheckedIn(true)
+        onCheckin()
       })
   }
 

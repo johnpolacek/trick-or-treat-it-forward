@@ -58,7 +58,7 @@ const Index = (props) => {
       >
         {count} Checkins so far… that’s ${count * 5}!
       </Text>
-      <CheckinForm />
+      <CheckinForm onCheckin={() => setCount(count + 1)} />
     </Box>
   )
 }
