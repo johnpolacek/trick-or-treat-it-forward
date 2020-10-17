@@ -3,6 +3,8 @@ import { Box, Text, Button, Link, Image } from "theme-ui"
 import CheckinForm from "../ui/forms/CheckinForm"
 
 const Index = (props) => {
+  const MAX_DONATIONS = 20
+  const DONATION_AMOUNT = 5
   const [count, setCount] = useState(null)
 
   useEffect(() => {
@@ -56,9 +58,18 @@ const Index = (props) => {
           opacity: count === null ? 0 : 1,
         }}
       >
-        {count} Checkins so far… that’s ${count * 5}!
+        {count} Checkins so far…{" "}
+        {count === MAX_DONATIONS
+          ? "we’ve hit our goal of " + MAX_DONATIONS * DONATION_AMOUNT
+          : "that’s $" + count * DONATION_AMOUNT + "!"}
       </Text>
-      <CheckinForm onCheckin={() => setCount(count + 1)} />
+      <CheckinForm
+        onCheckin={() => {
+          if (count + 1 < MAX_DONATIONS) {
+            setCount(count + 1)
+          }
+        }}
+      />
     </Box>
   )
 }
