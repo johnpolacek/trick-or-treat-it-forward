@@ -1,0 +1,33 @@
+{
+  "name": "trick-or-treat-it-forward",
+  "description": "Print a QR Code so trick or treaters can click a button to pledge a donation to the charity of your choice",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "NODE_ENV=development next dev",
+    "build": "NODE_ENV=production next build",
+    "start": "NODE_ENV=production next start",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format-watch": "npm run format && onchange \"**/*.{js,jsx,json,md}\" -- prettier --write {{changed}}",
+    "deploy": "git push origin main && vercel"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@mdx-js/loader": "^1.6.6",
+    "@next/mdx": "^9.4.4",
+    "@theme-ui/color": "^0.3.1",
+    "dotenv": "8.2.0",
+    "firebase": "^7.15.2",
+    "firebase-admin": "^8.12.1",
+    "lodash": "4.17.15",
+    "next": "^9.4.4",
+    "prop-types": "15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "swr": "^0.2.3",
+    "theme-ui": "^0.3.1"
+  },
+  "devDependencies": {
+    "onchange": "^6.1.1",
+    "prettier": "^2.0.5"
+  }
+}
