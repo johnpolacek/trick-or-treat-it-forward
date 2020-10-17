@@ -14,30 +14,19 @@ Next, add a new Web App to your project.
 
 Duplicate the `.env` as `.env.build` and add the `FIREBASE_PRIVATE_KEY` var and set it to the value from the json credentials file you downloaded from Firebase (tt should start with `-----BEGIN PRIVATE KEY-----` and end with `\n-----END PRIVATE KEY-----\n`).
 
-Initially your Firebase account will have [security rules](https://firebase.google.com/docs/firestore/security/overview) that allow open access during development. These rules will expire 30 days after you sign up for an account. You will need to [follow the directions from the Firebase docs](https://firebase.google.com/docs/firestore/security/insecure-rules) to update your security rules to to allow only signed-in users to write data.
-
-```
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if request.auth.uid != null;
-    }
-  }
-}
-```
+Initially your Firebase account will have [security rules](https://firebase.google.com/docs/firestore/security/overview) that allow open access during development. These rules will expire 30 days after you sign up for an account.
 
 ## Install
 
 Download or fork the `trick-or-treat-it-forward` project directory. From the top level of the project directory, open a terminal window and install the dependencies.
 
-```
+```sh
 npm install
 ```
 
 Run the app in a local environment.
 
-```
+```sh
 npm run dev
 ```
 
@@ -50,7 +39,7 @@ When it comes time for deployment, we will add these environment variables to th
 
 For deployment, get a Vercel account at [vercel.com/signup](https://vercel.com/signup). Once you have an account, you will need to install the Now CLI:
 
-```
+```sh
 npm install -g vercel
 ```
 
@@ -58,23 +47,23 @@ Next, we will use the Vercel CLI to add the secret vars for Firebase that corres
 
 For the `session-secret-previous` and `session-secret-current` variables, generate your own random 32-character key unique to your app. _Note: We have namespaced our secrets with ttif so they do not overwrite any other secrets you may have for other Vercel projects._
 
-```
+```sh
 vercel secrets add firebase-ttif-public-api-key <secret-value>
 vercel secrets add firebase-ttif-project-id <secret-value>
 vercel secrets add firebase-ttif-database-url <secret-value>
-vercel secrets add firebase-ttif-client-email <secret-value>
+vercel secrets add firebase-ttif-auth-domain <secret-value>
 vercel secrets add firebase-ttif-private-key -- "<secret-value>"
 ```
 
 Now that we have stored these to our Vercel account, we need to create a `vercel.json` deployment config file in our root directory so that the environment can access them.
 
-```
+```json
 {
   "env": {
     "FIREBASE_PUBLIC_API_KEY": "@firebase-ttif-public-api-key",
     "FIREBASE_DATABASE_URL": "@firebase-ttif-database-url",
     "FIREBASE_PROJECT_ID": "@firebase-ttif-project-id",
-    "FIREBASE_CLIENT_EMAIL": "@firebase-ttif-client-email",
+    "FIREBASE_AUTH_DOMAIN": "@firebase-ttif-client-email",
   },
   "build": {
     "env": {
@@ -82,7 +71,6 @@ Now that we have stored these to our Vercel account, we need to create a `vercel
       "FIREBASE_AUTH_DOMAIN": "@firebase-ttif-auth-domain",
       "FIREBASE_DATABASE_URL": "@firebase-ttif-database-url",
       "FIREBASE_PROJECT_ID": "@firebase-ttif-project-id",
-      "FIREBASE_CLIENT_EMAIL": "@firebase-ttif-client-email",
       "FIREBASE_PRIVATE_KEY": "@firebase-ttif-private-key",
     }
   }
@@ -91,6 +79,6 @@ Now that we have stored these to our Vercel account, we need to create a `vercel
 
 With that done, we can issue the `vercel` command. This is a new project (not existing) so we will follow the prompts to set it up for our first deployment:
 
-```
+```sh
 vercel
 ```
