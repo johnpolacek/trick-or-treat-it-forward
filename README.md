@@ -32,7 +32,7 @@ npm run dev
 
 At this point you will see the app running, but the serverless api will not work until we set up Firebase.
 
-When it comes time for deployment, we will add these environment variables to the remote environment via the console (see the Deployment section). 
+When it comes time for deployment, we will add these environment variables to the remote environment via the console. 
 
 
 ## Deployment
