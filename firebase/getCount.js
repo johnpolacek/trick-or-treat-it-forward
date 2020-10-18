@@ -1,15 +1,15 @@
 /* globals window */
 import firebase from "firebase/app"
 import "firebase/firestore"
+import firebaseServiceAccount from "./firebaseServiceAccount"
 
-const serviceAccount = require("./firebase-adminsdk.json")
 const admin = require("firebase-admin")
 
 try {
   admin.instanceId()
 } catch (err) {
   admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
+    credential: admin.credential.cert(firebaseServiceAccount),
     databaseURL: process.env.FIREBASE_DATABASE_URL,
     databaseAuthVariableOverride: {
       uid: "my-service-worker",

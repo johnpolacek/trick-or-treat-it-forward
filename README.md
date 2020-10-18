@@ -6,7 +6,40 @@
 
 First, you will need to create a new Firebase account at [firebase.google.com](https://firebase.google.com/) then create a project at the Firebase console. Under the General Settings, give your app a Public-facing name.
 
-Get your account credentials from the Firebase console at _Project settings > Service accounts_ where you can click on Generate new private key and download the credentials as a json file. It will contain keys such as `project_id`, `client_email` and `client_id`. Set them as environment variables in the `.env` file at the root of this project.
+Get your account credentials from the Firebase console at _Project settings > Service accounts_ where you can click on Generate new private key and download the credentials as a json file. It will contain keys such as `project_id`, `client_email` and `client_id`. 
+
+To be able to write to our Firestore cloud database, we will need to import these credentials to our serverless functions, but we do not want to upload this sensitive information into version control on Github.
+
+To do this we can create environment variables and import those instead. 
+
+For each of these, we will use the Vercel CLI to set them as a secret.
+
+
+
+
+
+Then in our `vercel.json` we link the `process.env` variable to its corresponding secret. This way our configuration will work both locally and when we deploy to a preview or production server environment.
+
+
+
+
+
+
+This project has a `.env` file at the root of this project that you can use as a template for this.
+
+
+
+
+We have 
+
+
+
+
+
+
+
+
+in the `.env` file at the root of this project.
 
 Additionally, the Firebase Admin SDK requires access to this json file, so move it into the `/firebase` directory. This file contains private keys for access to your Firebase project, so it should not get committed to source control. It is already excluded via `.gitignore`.
 
@@ -14,7 +47,7 @@ Next, add a new Web App to your project.
 
 Duplicate the `.env` as `.env.build` and add the `FIREBASE_PRIVATE_KEY` var and set it to the value from the json credentials file you downloaded from Firebase (tt should start with `-----BEGIN PRIVATE KEY-----` and end with `\n-----END PRIVATE KEY-----\n`).
 
-Initially your Firebase account will have [security rules](https://firebase.google.com/docs/firestore/security/overview) that allow open access during development. These rules will expire 30 days after you sign up for an account.
+Note: Initially your Firebase account will by default have [security rules](https://firebase.google.com/docs/firestore/security/overview) that allow open access during development. These rules will expire 30 days after you sign up for an account.
 
 ## Install
 
@@ -48,10 +81,11 @@ Next, we will use the Vercel CLI to add the secret vars for Firebase that corres
 For the `session-secret-previous` and `session-secret-current` variables, generate your own random 32-character key unique to your app. _Note: We have namespaced our secrets with ttif so they do not overwrite any other secrets you may have for other Vercel projects._
 
 ```sh
-vercel secrets add firebase-ttif-public-api-key <secret-value>
 vercel secrets add firebase-ttif-project-id <secret-value>
+vercel secrets add firebase-ttif-public-api-key <secret-value>
 vercel secrets add firebase-ttif-database-url <secret-value>
 vercel secrets add firebase-ttif-auth-domain <secret-value>
+vercel secrets add firebase-ttif-private-key-id <secret-value>
 vercel secrets add firebase-ttif-private-key -- "<secret-value>"
 ```
 
