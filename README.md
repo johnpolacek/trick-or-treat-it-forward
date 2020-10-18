@@ -8,7 +8,9 @@ First, you will need to create a new Firebase account at [firebase.google.com](h
 
 Get your account credentials from the Firebase console at _Project settings > Service accounts_ where you can click on Generate new private key and download the credentials as a json file. It will contain keys such as `project_id`, `client_email` and `client_id`. 
 
-We need to set up each of these keys as secrets in our Vercel configuration to use them as environment variables.
+To be able to write to our Firestore cloud database, we will need to import these credentials to our serverless functions, but we do not want to upload this sensitive information into version control on Github.
+
+To do this we can create environment variables and import those instead. 
 
 For each of these, we will use the Vercel CLI to set them as a secret.
 
