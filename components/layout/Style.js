@@ -39,8 +39,8 @@ const Style = (props) => (
       height: 0;
     }
     a {
-      background-color: transparent;
-      color: ${theme.colors.primary};
+      font-weight: bold;
+      color: black;
     }
     abbr[title] {
       border-bottom: none;
@@ -162,8 +162,8 @@ const Style = (props) => (
       border: none;
     }
     p {
-      line-height: 1.4;
-      margin: 0 0 16px;
+      line-height: 1.5;
+      padding: 0 0 16px;
     }
     ul {
       margin-top: 0;

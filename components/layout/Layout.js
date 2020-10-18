@@ -2,8 +2,9 @@ import React, { useContext, useEffect } from "react"
 import PropTypes from "prop-types"
 import Head from "./Head"
 import Style from "./Style"
-import { Flex } from "theme-ui"
+import { Flex, Box, Link } from "theme-ui"
 import Main from "../ui/containers/Main"
+import Footer from "../ui/Footer"
 
 const Layout = (props) => {
   return (
@@ -16,6 +17,7 @@ const Layout = (props) => {
         }}
       >
         <Main>{props.children}</Main>
+        <Footer />
       </Flex>
       <Style />
     </>
