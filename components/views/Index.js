@@ -4,7 +4,7 @@ import Header from "../ui/Header"
 import CheckinForm from "../ui/forms/CheckinForm"
 
 const Index = (props) => {
-  const DEMO_MODE = true
+  const DEMO_MODE = false
   const MAX_DONATIONS = 20
   const DONATION_AMOUNT = 5
 
