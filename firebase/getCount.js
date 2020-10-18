@@ -19,10 +19,10 @@ try {
 
 let db = admin.firestore()
 
-const createCheckin = async (data) => {
+const getCount = async (demo) => {
   try {
     return db
-      .collection("checkins")
+      .collection(demo ? "checkins-demo" : "checkins")
       .get()
       .then((snapshot) => {
         return { count: snapshot.size }
@@ -32,4 +32,4 @@ const createCheckin = async (data) => {
   }
 }
 
-export default createCheckin
+export default getCount

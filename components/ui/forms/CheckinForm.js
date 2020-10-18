@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Form from "./Form"
 import { Flex, Card, Text, Label, Input, Link } from "theme-ui"
 
-const CheckinForm = ({ onCheckin }) => {
+const CheckinForm = ({ onCheckin, demo }) => {
   const [who, setWho] = useState("")
   const [checkedIn, setCheckedIn] = useState(false)
 
@@ -12,7 +12,7 @@ const CheckinForm = ({ onCheckin }) => {
       // eslint-disable-next-line no-undef
       headers: new Headers({ "Content-Type": "application/json" }),
       credentials: "same-origin",
-      body: JSON.stringify({ who }),
+      body: JSON.stringify({ who, demo }),
     })
       .then((response) => response.json())
       .then((result) => {

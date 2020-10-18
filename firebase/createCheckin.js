@@ -19,9 +19,11 @@ try {
 
 let db = admin.firestore()
 
-const createCheckin = async (data) => {
+const createCheckin = async (who, demo) => {
   try {
-    const response = await db.collection("checkins").add(data)
+    const response = await db
+      .collection(demo ? "checkins-demo" : "checkins")
+      .add({ who, when: Date.now() })
     return { result: "success" }
   } catch (err) {
     return { err }

@@ -12,14 +12,15 @@ const Index = (props) => {
 
   useEffect(() => {
     fetch("/api/count", {
-      method: "GET",
+      method: "POST",
       // eslint-disable-next-line no-undef
       headers: new Headers({ "Content-Type": "application/json" }),
       credentials: "same-origin",
+      body: JSON.stringify({ demo: DEMO_MODE }),
     })
       .then((response) => response.json())
       .then((data) => {
-        setCount(data.count)
+        setCount(DEMO_MODE ? data.count % 20 : data.count)
       })
   }, [])
 
@@ -55,12 +56,13 @@ const Index = (props) => {
           opacity: count === null ? 0 : 1,
         }}
       >
-        {count} Checkin{count > 0 && "s"} so far…{" "}
+        {count} Checkin{count > 1 && "s"} so far…{" "}
         {count === MAX_DONATIONS
           ? "we’ve hit our goal of " + MAX_DONATIONS * DONATION_AMOUNT
           : "that’s $" + count * DONATION_AMOUNT + "!"}
       </Text>
       <CheckinForm
+        demo={DEMO_MODE}
         onCheckin={() => {
           if (count + 1 < MAX_DONATIONS) {
             setCount(count + 1)
