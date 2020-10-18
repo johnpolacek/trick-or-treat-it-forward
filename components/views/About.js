@@ -22,18 +22,29 @@ const About = (props) => (
         textAlign: "left",
       }}
     >
-      <Text as="p">
-        Like many families in 2020, we were trying to figure out what to do for
-        Halloween. As cases are starting to rise in the fall, it didn’t seem
-        like a good idea to have batches of trick or treaters at our door. We
-        could have done the candy bowl thing, but we wanted to do something a
-        little more positive.
+      <Text as="h2" sx={{ py: 3 }}>
+        How It Works
       </Text>
       <Text as="p">
-        It hit us. Instead of passing out candy, we could donate to those in
-        need. It is a whole family project. My wife ordered some decorations.
-        The boys helped with the art for a sign that will have a QR code that
-        points to this little website I coded up.
+        Trick or Treaters see a sign in front of the house that tells them we
+        are making donations instead of giving away candy. They or their
+        chaperones can scan a QR code that points to a website. They click the
+        ‘I Was Here’ button to record their check-in. For every check-in, we
+        make a $5 donation to{" "}
+        <a href="https://www.lakeviewpantry.org/">Lakeview Pantry</a>, up to
+        $200.
+      </Text>
+      <Text as="h2" sx={{ py: 3 }}>
+        About This Project
+      </Text>
+      <Text as="p">
+        My family and I came up with this idea over dinner while trying to come
+        up with ideas for what to do on Halloween this year. Read more about it
+        on my website. The source code is up{" "}
+        <a href="https://github.com/johnpolacek/trick-or-treat-it-forward">
+          on Github
+        </a>{" "}
+        if you want to make your own.
       </Text>
       <Text as="p">Pictures coming soon!</Text>
     </Box>
