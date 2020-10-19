@@ -7,8 +7,7 @@
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production next start",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "format-watch": "npm run format && onchange \"**/*.{js,jsx,json,md}\" -- prettier --write {{changed}}",
-    "deploy": "git push origin main && vercel"
+    "format-watch": "npm run format && onchange \"**/*.{js,jsx,json,md}\" -- prettier --write {{changed}}"
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",

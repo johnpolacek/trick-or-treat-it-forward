@@ -12,7 +12,7 @@ To be able to write to our Firestore cloud database, we will need to import thes
 
 To do this we can create environment variables and import those instead. This project has a `.env` file at the root of this project that you can use as a template for this.
 
-Duplicate the `.env` and rename to `.env.build`. Set each variable to the value from the json credentials file you downloaded from Firebase. 
+Duplicate the `.env` and rename to `.env.build`. Set each variable to the value from the json credentials file you downloaded from Firebase. Once this is done, you will be able to run serverless Firebase functions locally.
 
 Because this file contains private keys for access to your Firebase project, so it should not get committed to source control. In this project, it is already excluded via `.gitignore`.
 
@@ -38,6 +38,46 @@ For deployment, get a Vercel account at [vercel.com/signup](https://vercel.com/s
 
 ```sh
 npm install -g vercel
+```
+
+To run your serverless functions on a Vercel deployment, you will need to create secrets for your environment variables. For each secret, use the following command:
+
+```sh
+now secets add firebase-ttif-public-api-key <secret-value>
+```
+
+For the private key, you will need to use a double dash and quotes:
+
+```sh
+now secrets add firebase-private-key -- "<secret-value>"
+```
+
+If you open the vercel.json file you will see that each of these secrets is mapped to the corresponding environment variable.
+
+*vercel.json*
+```json
+{
+  "env": {
+    "FIREBASE_PUBLIC_API_KEY": "@firebase-ttif-public-api-key",
+    "FIREBASE_AUTH_DOMAIN": "@firebase-ttif-auth-domain",
+    "FIREBASE_DATABASE_URL": "@firebase-ttif-database-url",
+    "FIREBASE_PROJECT_ID": "@firebase-ttif-project-id",
+    "FIREBASE_CLIENT_EMAIL": "@firebase-ttif-client-email",
+    "FIREBASE_CLIENT_ID": "@firebase-ttif-client-id",
+    "FIREBASE_PRIVATE_KEY": "@firebase-ttif-private-key"
+  },
+  "build": {
+    "env": {
+      "FIREBASE_PUBLIC_API_KEY": "@firebase-ttif-public-api-key",
+      "FIREBASE_AUTH_DOMAIN": "@firebase-ttif-auth-domain",
+      "FIREBASE_DATABASE_URL": "@firebase-ttif-database-url",
+      "FIREBASE_PROJECT_ID": "@firebase-ttif-project-id",
+      "FIREBASE_CLIENT_EMAIL": "@firebase-ttif-client-email",
+      "FIREBASE_CLIENT_ID": "@firebase-ttif-client-id",
+      "FIREBASE_PRIVATE_KEY": "@firebase-ttif-private-key"
+    }
+  }
+}
 ```
 
 With that done, we can issue the `vercel` command. This is a new project (not existing) so we will follow the prompts to set it up for our first deployment:
