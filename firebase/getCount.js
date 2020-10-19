@@ -5,6 +5,8 @@ import firebaseServiceAccount from "./firebaseServiceAccount"
 
 const admin = require("firebase-admin")
 
+console.log(firebaseServiceAccount)
+
 try {
   admin.instanceId()
 } catch (err) {
