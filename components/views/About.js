@@ -40,7 +40,7 @@ const About = (props) => (
       <Text as="p">
         My family and I came up with this idea over dinner while trying to come
         up with ideas for what to do on Halloween this year. Read more about it
-        on my website. The source code is up{" "}
+        on <a href="https://johnpolacek.com/trick-or-treat-it-forward">my website</a>. The source code is up{" "}
         <a href="https://github.com/johnpolacek/trick-or-treat-it-forward">
           on Github
         </a>{" "}
