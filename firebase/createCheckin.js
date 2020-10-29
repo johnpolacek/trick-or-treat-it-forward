@@ -1,4 +1,5 @@
 /* globals window */
+import CONFIG from "../app.config.js"
 import firebase from "firebase/app"
 import "firebase/firestore"
 import firebaseServiceAccount from "./firebaseServiceAccount"
@@ -22,7 +23,7 @@ let db = admin.firestore()
 const createCheckin = async (who, demo) => {
   try {
     const response = await db
-      .collection(demo ? "checkins-demo" : "checkins")
+      .collection(CONFIG.COLLECTION)
       .add({ who, when: Date.now() })
     return { result: "success" }
   } catch (err) {
