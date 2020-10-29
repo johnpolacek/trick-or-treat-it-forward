@@ -1,15 +1,14 @@
 module.exports = {
   CHARITY: {
-    NAME: "Lakeview Pantry",
-    URL: "https://www.lakeviewpantry.org",
-    URL_PRETTY: "lakeviewpantry.org",
-    DESC: "Chicago’s Largest Food Pantry",
-    DONATE_URL: "https://www.lakeviewpantry.org/donate",
+    NAME: "HCS Family Services",
+    URL: "https://www.hcsfamilyservices.org/",
+    URL_PRETTY: "hcsfamilyservices.org",
+    DONATE_URL: "https://www.hcsfamilyservices.org/ways-to-give/donate/",
   },
   DONATIONS: {
     AMOUNT: 5,
     MAX: 40,
   },
   DEMO: false,
-  COLLECTION: "checkins",
+  COLLECTION: "checkins-hcs",
 }

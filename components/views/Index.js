@@ -42,8 +42,8 @@ const Index = (props) => {
         >
           {CONFIG.CHARITY.NAME}
         </a>
-        {CONFIG.CHARITY.DESC && ", " + CONFIG.CHARITY.DESC + " "}
-        for every trick or treater who checks in at our house (up&nbsp;to&nbsp;$
+        {CONFIG.CHARITY.DESC && ", " + CONFIG.CHARITY.DESC}
+        {" "}for every trick or treater who checks in at our house (up&nbsp;to&nbsp;$
         {CONFIG.DONATIONS.AMOUNT * CONFIG.DONATIONS.MAX}).
       </Text>
       <Text
