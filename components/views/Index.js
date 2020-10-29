@@ -21,8 +21,6 @@ const Index = (props) => {
       })
   }, [])
 
-  console.log(CONFIG)
-
   return (
     <Box
       sx={{
