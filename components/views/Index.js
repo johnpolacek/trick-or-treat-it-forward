@@ -1,13 +1,10 @@
+import CONFIG from "../../app.config.js"
 import React, { useState, useEffect } from "react"
 import { Box, Text, Button, Image } from "theme-ui"
 import Header from "../ui/Header"
 import CheckinForm from "../ui/forms/CheckinForm"
 
 const Index = (props) => {
-  const DEMO_MODE = true
-  const MAX_DONATIONS = 20
-  const DONATION_AMOUNT = 5
-
   const [count, setCount] = useState(null)
 
   useEffect(() => {
@@ -16,13 +13,15 @@ const Index = (props) => {
       // eslint-disable-next-line no-undef
       headers: new Headers({ "Content-Type": "application/json" }),
       credentials: "same-origin",
-      body: JSON.stringify({ demo: DEMO_MODE }),
+      body: JSON.stringify({ demo: CONFIG.DEMO }),
     })
       .then((response) => response.json())
       .then((data) => {
-        setCount(DEMO_MODE ? data.count % 20 : data.count)
+        setCount(CONFIG.DEMO ? data.count % CONFIG.DONATIONS.MAX : data.count)
       })
   }, [])
+
+  console.log(CONFIG)
 
   return (
     <Box
@@ -36,15 +35,17 @@ const Index = (props) => {
     >
       <Header />
       <Text sx={{ fontSize: [0, 1], maxWidth: "960px", mx: "auto" }}>
-        Instead of passing out treats, we’re making a $5 donation to{" "}
+        Instead of passing out treats, we’re making a ${CONFIG.DONATIONS.AMOUNT}{" "}
+        donation to{" "}
         <a
           sx={{ color: "black", fontWeight: "bold" }}
-          href="https://www.lakeviewpantry.org/"
+          href={CONFIG.CHARITY.URL}
         >
-          Lakeview Pantry
+          {CONFIG.CHARITY.NAME}
         </a>
-        , Chicago’s largest food pantry, for every trick or treater who checks
-        in at our house (up&nbsp;to&nbsp;$200).
+        {CONFIG.CHARITY.DESC && ", " + CONFIG.CHARITY.DESC + " "}
+        for every trick or treater who checks in at our house (up&nbsp;to&nbsp;$
+        {CONFIG.DONATIONS.AMOUNT * CONFIG.DONATIONS.MAX}).
       </Text>
       <Text
         sx={{
@@ -57,19 +58,20 @@ const Index = (props) => {
         }}
       >
         {count} Checkin{count > 1 && "s"} so far…{" "}
-        {count === MAX_DONATIONS
-          ? "we’ve hit our goal of " + MAX_DONATIONS * DONATION_AMOUNT
-          : "that’s $" + count * DONATION_AMOUNT + "!"}
+        {count === CONFIG.DONATIONS.MAX
+          ? "we’ve hit our goal of " +
+            CONFIG.DONATIONS.MAX * CONFIG.DONATIONS.AMOUNT
+          : "that’s $" + count * CONFIG.DONATIONS.AMOUNT + "!"}
       </Text>
       <CheckinForm
-        demo={DEMO_MODE}
+        demo={CONFIG.DEMO}
         onCheckin={() => {
-          if (count + 1 < MAX_DONATIONS) {
+          if (count + 1 < CONFIG.DONATIONS.MAX) {
             setCount(count + 1)
           }
         }}
       />
-      {DEMO_MODE && (
+      {CONFIG.DEMO && (
         <Text sx={{ pt: 3, fontStyle: "italic" }}>
           Note: This is in Demo Mode
         </Text>

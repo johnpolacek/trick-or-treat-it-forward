@@ -1,3 +1,4 @@
+import CONFIG from "../../app.config.js"
 import React, { useState, useEffect } from "react"
 import { Box, Text, Button, Link, Image } from "theme-ui"
 import Header from "../ui/Header"
@@ -30,9 +31,9 @@ const About = (props) => (
         are making donations instead of giving away candy. They or their
         chaperones can scan a QR code that points to a website. They click the
         ‘I Was Here’ button to record their check-in. For every check-in, we
-        make a $5 donation to{" "}
-        <a href="https://www.lakeviewpantry.org/">Lakeview Pantry</a>, up to
-        $200.
+        make a ${CONFIG.CHARITY.AMOUNT} donation to{" "}
+        <a href={CONFIG.CHARITY.URL}>{CONFIG.CHARITY.NAME}</a>, up to $
+        {CONFIG.CHARITY.AMOUNT * CONFIG.CHARITY.MAX}.
       </Text>
       <Text as="h2" sx={{ py: 3 }}>
         About This Project

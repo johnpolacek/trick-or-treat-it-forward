@@ -1,4 +1,5 @@
 /* globals window */
+import CONFIG from "../app.config.js"
 import firebase from "firebase/app"
 import "firebase/firestore"
 import firebaseServiceAccount from "./firebaseServiceAccount"
@@ -22,7 +23,7 @@ let db = admin.firestore()
 const getCount = async (demo) => {
   try {
     return db
-      .collection(demo ? "checkins-demo" : "checkins")
+      .collection(CONFIG.COLLECTION)
       .get()
       .then((snapshot) => {
         return { count: snapshot.size }

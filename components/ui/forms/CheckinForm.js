@@ -1,3 +1,4 @@
+import CONFIG from "../../../app.config.js"
 import React, { useState } from "react"
 import Form from "./Form"
 import { Flex, Card, Text, Label, Input, Link } from "theme-ui"
@@ -37,11 +38,11 @@ const CheckinForm = ({ onCheckin, demo }) => {
               Thanks {who}!
             </Text>
             <Text sx={{ fontSize: [0, 1] }}>
-              If you’d like to make your own donation to Lakeview Pantry, head
-              on over to{" "}
+              If you’d like to make your own donation to {CONFIG.CHARITY.NAME},
+              head on over to{" "}
             </Text>
             <Link
-              href="https://www.lakeviewpantry.org/donate/"
+              href={CONFIG.CHARITY.DONATE_URL}
               sx={{
                 display: "block",
                 pt: 2,
@@ -49,7 +50,7 @@ const CheckinForm = ({ onCheckin, demo }) => {
                 color: "secondary",
               }}
             >
-              lakeviewpantry.org
+              {CONFIG.CHARITY.URL_PRETTY}
             </Link>
           </Card>
         </Flex>
